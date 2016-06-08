@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bagging and Boosting</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Bagging and Boosting">
+  <meta name="author" content="Henry Lin">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Bagging and Boosting</h1>
+    <h2>very short introduction to tree based model.</h2>
+    <p>Henry Lin<br/>替代役</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h1>Outline</h1>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>2W questions</p></li>
+<li><p>Bagging </p></li>
+<li><p>Boosting </p></li>
+<li><p>Random Forest </p></li>
+<li><p>AdaBoost / Gradiant Boosting </p></li>
+<li><p>Conclusion</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>2W questions</h1>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Why
+
+<ul>
+<li>Why this algorithm exists? (What kind of problem it solves?) </li>
+</ul></li>
+<li>How
+
+<ul>
+<li>How this algorithm formulated?</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h1>Why Bagging?</h1>
+  </hgroup>
+  <article data-timings="">
+    <blockquote>
+<p>Bagging exploits that idea to address the <code>overfitting issue</code> in a more fundamental manner. It was invented by Leo Breiman, who called it &quot;bootstrap aggregating&quot; or simply &quot;bagging&quot; (reference: &quot;Bagging predictors,&quot; Machine Learning, 24:123-140, 1996, cited by 7466).</p>
+</blockquote>
+
+<h3>The decision trees suffer from <code>high variance</code> and <code>Bagging(Boostrap Aggregation)</code> is a procedure to reduce variance.</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h1>How Bagging Works?</h1>
+  </hgroup>
+  <article data-timings="">
+    <p>\[\hat{f}_{bag}(x) = \frac{1}{B}\sum_{B}^{b=1}\hat{f}^{*b}(x)\]</p>
+
+<p><img src="assets/img/Bagging_alg.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Why Boosting?</h2>
+  </hgroup>
+  <article data-timings="">
+    <blockquote>
+<p>The motivation for boosting was a procedure that combines the outputs of many “weak” classifiers to produce a powerful “committee.”</p>
+</blockquote>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>How Boosting Works?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/Boosting_alg.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h1>Bagging V.S. Boosting</h1>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Bagging reduce the variance</p></li>
+<li><p>Boosting learned from the mistakes.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h1>Why Random Forests?</h1>
+  </hgroup>
+  <article data-timings="">
+    <blockquote>
+<p>Trees are ideal candidates for bagging, since they can capture complex interaction structures in the data, and if grown sufficiently deep, have relatively low bias. Since trees are <code>notoriously noisy</code>, they benefit greatly from the <code>averaging</code>. </p>
+</blockquote>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2><strong>Random Forests = Bagging + C&amp;RT decision trees</strong></h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Detail of Random Forests</h3>
+
+<ul>
+<li>For classification, the default value for m is \(\sqrt{p}\) and the minimum node size is one.</li>
+<li>For regression, the default value for m is \(\frac{p}{3}\) and the minimum node size is five.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h1>How Random Forest Works?</h1>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/RandomForest_alg.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h1>Why Boosting trees?</h1>
+  </hgroup>
+  <article data-timings="">
+    <blockquote>
+<p>Boosting tree can be considered as a human learning process. Trees are just like human decision-making process and boosting is a way to learn by weak learner, which means boosting + tree is learned by mistakes.</p>
+</blockquote>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h1>How Boosting Work?</h1>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/Boostingtree_alg.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Random Forests V.S. Boosting trees</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong>Fature Importance</strong></li>
+<li><strong>Test-error Comparasion</strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Feature Importance</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/Feature_Importance.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Test-error Comparasion</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/Test_error.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h1>Conclusion</h1>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li><p><strong>Generally, Boosting has better performance than Bagging. However, Sometimes Random Forests have better performance.</strong></p></li>
+<li><p><strong>The advantage of Random Forests is more simple to train and tune than boosting trees.</strong></p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Outline'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='2W questions'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Why Bagging?'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='How Bagging Works?'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Why Boosting?'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='How Boosting Works?'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Bagging V.S. Boosting'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Why Random Forests?'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='<strong>Random Forests = Bagging + C&amp;RT decision trees</strong>'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='How Random Forest Works?'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Why Boosting trees?'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='How Boosting Work?'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Random Forests V.S. Boosting trees'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Feature Importance'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Test-error Comparasion'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Conclusion'>
+         16
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
